@@ -21,7 +21,7 @@ class AppInterceptor extends Interceptor {
       ..receiveTimeout = const Duration(seconds: 60)
       ..headers = {
         AppStrings.contentType: AppStrings.applicationJson,
-        'lang': 'en',
+        'lang': 'ar',
       };
     super.onRequest(options, handler);
   }

@@ -6,7 +6,7 @@ class Login extends Equatable {
 
   final String message;
 
-  final LoginData data;
+  final LoginData? data;
 
  const Login({required this.status,required this.message, required this.data});
   

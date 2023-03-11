@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:e_commerce/app/injector.dart';
 import 'package:e_commerce/core/api/api_consumer.dart';
 import 'package:e_commerce/core/api/app_interceptor.dart';
 import 'package:e_commerce/core/api/status_code.dart';
@@ -7,13 +8,14 @@ import 'package:flutter/foundation.dart';
 import '../error/exceptions.dart';
 
 class DioConsumer extends ApiCounsumer {
+  
   final Dio dio;
 
   DioConsumer({required this.dio}) {
     //From Dio Package
-    dio.interceptors.add(AppInterceptor());
+    dio.interceptors.add(getIt<AppInterceptor>());
     //for test in debug mode
-    if (kDebugMode) dio.interceptors.add(LogInterceptor());
+    if (kDebugMode) dio.interceptors.add(getIt<LogInterceptor>());
   }
 
   @override
@@ -27,16 +29,21 @@ class DioConsumer extends ApiCounsumer {
     }
   }
 
-  @override
-  Future<Response> post(String endpoint,
+ @override
+  Future<Response> post(String endPoint,
       {Map<String, dynamic>? query, Map<String, dynamic>? body}) async {
     try {
-      final response = await dio.post(endpoint);
+      final response = await dio.post(
+        endPoint,
+        queryParameters: query,
+        data: body,
+      );
       return response;
     } on DioError catch (error) {
       return _handleDioError(error);
     }
   }
+
 
   @override
   Future<Response> put(String endpoint,

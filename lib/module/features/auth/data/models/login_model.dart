@@ -5,7 +5,9 @@ import '../../domain/entities/login.dart';
 
 class LoginModel extends Login {
   const LoginModel(
-      {required super.status, required super.message, required super.data});
+      {required super.status,
+       required super.message,
+        required super.data});
 
   LoginModel copyWith({
     bool? status,
@@ -31,7 +33,7 @@ class LoginModel extends Login {
     return LoginModel(
        status: map['status']  as bool,
       message: map['message'] as String,
-      data: LoginDataModel.fromMap(map['data'] as Map<String, dynamic>),
+      data:map['data']!= null? LoginDataModel.fromMap(map['data'] as Map<String, dynamic>):null,
     );
   }
 

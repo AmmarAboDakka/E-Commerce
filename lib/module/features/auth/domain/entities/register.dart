@@ -6,7 +6,7 @@ class Register extends Equatable {
 
   final String message;
 
-  final RegisterData data;
+  final RegisterData? data;
   
 
   const Register(

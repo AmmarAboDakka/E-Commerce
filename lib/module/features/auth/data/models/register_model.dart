@@ -34,7 +34,7 @@ class RegisterModel extends Register {
     return RegisterModel(
       status: map['status'] as bool,
       message: map['message'] as String,
-      data: RegisterDataModel.fromMap(map['data'] as Map<String, dynamic>),
+      data:map['data']!= null?  RegisterDataModel.fromMap(map['data'] as Map<String, dynamic>):null,
     );
   }
 
